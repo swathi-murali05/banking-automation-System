@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Transfer</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+    margin:0;
+    font-family:'Segoe UI';
+    color:white;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+    url("https://images.unsplash.com/photo-1563013544-824ae1b704d3");
+
+    background-size:cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.card {
+    background:rgba(255,255,255,0.1);
+    padding:40px;
+    border-radius:15px;
+    backdrop-filter: blur(10px);
+    text-align:center;
+    animation:fadeIn 1s;
+}
+
+input {
+    width:250px;
+    padding:12px;
+    margin:10px;
+    border:none;
+    border-radius:8px;
+}
+
+button {
+    padding:12px 20px;
+    background:#00c853;
+    border:none;
+    border-radius:8px;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover {
+    background:#00e676;
+}
+
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+</style>
+
+<script>
+function sendMoney(){
+
+ let acc=document.getElementById("acc").value;
+ let amt=parseInt(document.getElementById("amt").value);
+
+ let user=JSON.parse(localStorage.getItem("currentUser"));
+
+ if(amt>user.balance){
+   alert("Insufficient Balance");
+   return;
+ }
+
+ user.balance -= amt;
+
+ user.history.push({
+   date:new Date().toLocaleDateString(),
+   desc:"Transfer to "+acc,
+   amt:"-"+amt
+ });
+
+ localStorage.setItem("currentUser",JSON.stringify(user));
+
+ window.location="success.html";
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="card">
+<h2><i class="fas fa-paper-plane"></i> Transfer Money</h2>
+
+<input id="acc" placeholder="Account Number"><br>
+<input id="amt" placeholder="Amount"><br>
+
+<button onclick="sendMoney()">Send</button>
+</div>
+
+</body>
+</html>

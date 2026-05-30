@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bank Login</title>
+
+<style>
+body {
+    margin:0;
+    height:100vh;
+    font-family: Arial;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+    url("https://images.unsplash.com/photo-1556740738-b6a63e27c4df");
+
+    background-size:cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.card {
+    background: rgba(255,255,255,0.1);
+    padding:30px;
+    border-radius:15px;
+    backdrop-filter: blur(10px);
+    text-align:center;
+    color:white;
+}
+
+input {
+    width:90%;
+    padding:10px;
+    margin:10px;
+}
+
+button {
+    background:#00c853;
+    color:white;
+    padding:10px 20px;
+    border:none;
+}
+</style>
+
+<script>
+const users = [
+ {username:"admin",password:"admin123",balance:10000,history:[]},
+ {username:"user1",password:"user123",balance:5000,history:[]}
+];
+
+function login(){
+ let u=document.getElementById("u").value;
+ let p=document.getElementById("p").value;
+
+ let user=users.find(x=>x.username===u && x.password===p);
+
+ if(user){
+   localStorage.setItem("currentUser",JSON.stringify(user));
+   window.location="dashboard.html";
+ }else{
+   alert("Invalid Login");
+ }
+}
+</script>
+</head>
+
+<body>
+<div class="card">
+<h2>🏦 Bank Login</h2>
+<input id="u" placeholder="Username">
+<input id="p" type="password" placeholder="Password">
+<br>
+<button onclick="login()">Login</button>
+</div>
+</body>
+</html>
