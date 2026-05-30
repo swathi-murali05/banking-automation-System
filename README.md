@@ -8,7 +8,7 @@ This project simulates a modern banking application with a modern dark-themed UI
 
 ## 👩‍💻 Developer
 
-**Swathi Murali**
+**Swathi M**
 
 GitHub Profile: https://github.com/swathi-murali05
 
